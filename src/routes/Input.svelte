@@ -1,6 +1,8 @@
 <script>
-  import Option from "./Option.svelte";
-  import Wheel from "./Wheel.svelte";
+    import InfoCard from "../lib/InfoCard.svelte";
+import Option from "../lib/Option.svelte";
+    import Wheel from "../lib/Wheel.svelte";
+
 
     let name=''
     let list=[]
@@ -19,6 +21,9 @@
 </script>
 
 <div class="input">
+    <div class="app-title">
+        Eenie Menie Minee
+    </div>
     <form class="option-form" on:submit|preventDefault={() => addOptionToList()}>
         <input class="option-input" bind:this={inputRef} bind:value={name} placeholder="Enter Option" disabled={list?.length >= 10} />
         <button class="add-button" on:click={() => addOptionToList()}>+</button>
@@ -27,14 +32,21 @@
         {#each list as name, index}
 		    <Option option={name} index={index} on:removeFromList={removeFromList} />
 	    {/each}
-        {#each {length: 10-list?.length} as _}
-            <Option option={''} index={-1} on:removeFromList={removeFromList} />
-        {/each}
     </div>
-    <Wheel {list} />
+    {#if list?.length >1 }
+        <Wheel {list} />
+    {:else}
+        <InfoCard />
+    {/if}
 </div>
 
 <style>
+    .app-title{
+        font-size: 3rem;
+        color: rgb(243, 88, 114);
+        font-weight: 900;
+        height: 8rem;
+    }
     .input{
         width: 100%;
         height: 100%;
@@ -60,6 +72,7 @@
         font-size: 2rem;
         cursor: pointer;
         margin-left: 1rem;
+        border-radius: 1rem;
     }
     .list-items{
         width:100%;

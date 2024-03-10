@@ -3,8 +3,8 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Eenie Menie Minee</title>
+	<meta name="description" content="Pick the option" />
 </svelte:head>
 
 <section>
